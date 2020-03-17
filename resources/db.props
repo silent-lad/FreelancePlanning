@@ -1,0 +1,7 @@
+#URL of MaraiDB server
+jdbc.url = 127.0.0.1
+#Database name
+jdbc.schema =
+#Username and password
+jdbc.username =
+jdbc.password =
