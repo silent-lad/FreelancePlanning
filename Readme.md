@@ -78,6 +78,20 @@ String result = String.format(template, status, key);
 
 - I have used varchar(x) as it depoends on you guys how long yur need is.
 - Billboard table
+
   - b_id - primary key for the table.
   - We are ot storing the XML in table as it is not good standard and we will create XML as explained above. BY template literals. So we have all the fields we need.
   - U_id is the foreign key so that we know which user created which billboard so that no other user(except admin) can delete that billboard.
+
+- Schedule table
+
+  - S_id PK.
+  - b_id as each schedule is of 1 billboard only
+  - Timestamps as explained above in Design of Server.
+
+- Session table
+  - stores token along with the user_id to know what user is on which session. And cross reference permissions.
+- User table
+  - All the permissions are boolean value so they can be easily check if they are active or not on the particaular user.
+  - have stored the salt and the twice hashed(onced at client side secondly at server) password in the DB.
+  - name is the login id.
