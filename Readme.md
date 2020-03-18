@@ -30,3 +30,31 @@ String result = String.format(template, status, key);
 <img src="images/control_panel.png">
 
 ### Design
+
+- GUI screens/features
+  - Login
+  - Billboard creation
+  - Scheduling BillBoard
+  - Billboard delete (ADMIN)
+  - User ADD,DELETE,GRANT PERMISSION(ADMIN)
+- You will find the detailed description in specs.
+- The approach to make this would be :-
+
+  - Login - An HTTP request to server and once hashed password goes to the server. Server does the auth and returns a **token** and makes a new session in session table.
+  - Client reaction - The control panel will store this **token in cookies**.
+  - At every request now the server will check for the cookies of the request for token.
+    It will match the token to the ones in session table. And will retrieve the user by u_id(refer schema) from the db.Once it has the user it also has the information of what permissions does this user have. SO to safe gaurd actions.
+
+- Schedule creation-
+  - When a schedule created it will also have the field if it is recuring or not.If it is recuring we will store after what period it reoccurs.
+  - Every time the billboard is shown we will change the start_time field (refer db) to
+    `start_time = start_time+duration_recuring_period`
+  - If it is not recuring it will leave it as it is.
+- User actions are pretty easy as there is 1 field for each permission.
+- Default user is to be created at the first start of the app.(keep this in mind)
+
+## Server
+
+<img src="images/server.png">
+
+### Design -
