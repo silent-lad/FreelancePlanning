@@ -58,3 +58,22 @@ String result = String.format(template, status, key);
 <img src="images/server.png">
 
 ### Design -
+
+- Biggest part of all.
+- One handler for Viewer request-
+  - Every 15 seconds wehen viewer contacts it.It makes a DB query so as to which schedule entries are running.
+  - If more than 1 schedule entry is in running period. i.e start_time\<current_time\<end_time
+    Then order the query by creation timestamp and run the first one.
+  - Do above because of Page-7 Note.
+- One handler for Control panel.
+  - To remove the billboard from schedule just delete the schedule entry corresponding to the given billboard id(b_id) [refer the db].
+  - Add users,billboards,grant permission all will be done after checking the token in the cookie.Then finding the user by cross referencing the token in session table.Getting the permissions of the user AND THEN letting him do what he is capable of.Else give internal server error to client.
+  - LOGOUT- Just delte the session entry from the session table for the corresponing token. User will logout.
+
+## Database
+
+<img src="images/schema.png">
+
+## Design
+
+-
